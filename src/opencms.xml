@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opencms>
+    <setting name="siteName" value="OPENCMS"/>
+    <setting name="siteUrl" value="http://localhost"/>
+    <setting name="logo" value="/upload/image/logo.gif"/>
+    <setting name="hotSearch" value=""/>
+    <setting name="address" value=""/>
+    <setting name="phone" value="400-8888888"/>
+    <setting name="zipCode" value="400000"/>
+    <setting name="email" value=""/>
+    <setting name="certtext" value=""/>
+    <setting name="isSiteEnabled" value="true"/>
+    <setting name="siteCloseMessage"
+             value="&lt;dl&gt;&lt;dt&gt;网站维护中，暂时无法访问！&lt;/dt&gt;&lt;dd&gt;本网站正在进行系统维护和技术升级，网站暂时无法访问，敬请谅解！&lt;/dd&gt;&lt;/dl&gt;"/>
+    <setting name="largeProductImageWidth" value="800"/>
+    <setting name="largeProductImageHeight" value="800"/>
+    <setting name="mediumProductImageWidth" value="300"/>
+    <setting name="mediumProductImageHeight" value="300"/>
+    <setting name="thumbnailProductImageWidth" value="170"/>
+    <setting name="thumbnailProductImageHeight" value="170"/>
+    <setting name="defaultLargeProductImage" value="/upload/image/default_large.jpg"/>
+    <setting name="defaultMediumProductImage" value="/upload/image/default_medium.jpg"/>
+    <setting name="defaultThumbnailProductImage" value="/upload/image/default_thumbnail.jpg"/>
+    <setting name="watermarkAlpha" value="50"/>
+    <setting name="watermarkImage" value="/upload/image/watermark.png"/>
+    <setting name="watermarkPosition" value="bottomRight"/>
+    <setting name="priceScale" value="2"/>
+    <setting name="priceRoundType" value="roundHalfUp"/>
+    <setting name="isShowMarketPrice" value="true"/>
+    <setting name="defaultMarketPriceScale" value="1.2"/>
+    <setting name="isRegisterEnabled" value="true"/>
+    <setting name="isDuplicateEmail" value="false"/>
+    <setting name="disabledUsername" value="admin,管理员"/>
+    <setting name="usernameMinLength" value="2"/>
+    <setting name="usernameMaxLength" value="20"/>
+    <setting name="passwordMinLength" value="4"/>
+    <setting name="passwordMaxLength" value="20"/>
+    <setting name="registerPoint" value="0"/>
+    <setting name="registerAgreement" value=""/>
+    <setting name="isEmailLogin" value="true"/>
+    <setting name="captchaTypes"
+             value="memberLogin,memberRegister,adminLogin,review,consultation,findPassword,resetPassword,other"/>
+    <setting name="accountLockTypes" value="member,admin"/>
+    <setting name="accountLockCount" value="5"/>
+    <setting name="accountLockTime" value="10"/>
+    <setting name="safeKeyExpiryTime" value="1440"/>
+    <setting name="uploadMaxSize" value="10"/>
+    <setting name="uploadImageExtension" value="jpg,jpeg,bmp,gif,png"/>
+    <setting name="uploadFlashExtension" value="swf,flv"/>
+    <setting name="uploadMediaExtension" value="swf,flv,mp3,wav,avi,rm,rmvb"/>
+    <setting name="uploadFileExtension" value="zip,rar,7z,doc,docx,xls,xlsx,ppt,pptx"/>
+    <setting name="imageUploadPath" value="/upload/image/${.now?string('yyyyMM')}/"/>
+    <setting name="flashUploadPath" value="/upload/flash/${.now?string('yyyyMM')}/"/>
+    <setting name="mediaUploadPath" value="/upload/media/${.now?string('yyyyMM')}/"/>
+    <setting name="fileUploadPath" value="/upload/file/${.now?string('yyyyMM')}/"/>
+    <setting name="smtpFromMail" value=""/>
+    <setting name="smtpHost" value=""/>
+    <setting name="smtpPort" value="25"/>
+    <setting name="smtpUsername" value="test"/>
+    <setting name="smtpPassword" value="test"/>
+    <setting name="currencySign" value="￥"/>
+    <setting name="currencyUnit" value="元"/>
+    <setting name="stockAlertCount" value="5"/>
+    <setting name="stockAllocationTime" value="order"/>
+    <setting name="defaultPointScale" value="1"/>
+    <setting name="isDevelopmentEnabled" value="false"/>
+    <setting name="isReviewEnabled" value="true"/>
+    <setting name="isReviewCheck" value="true"/>
+    <setting name="reviewAuthority" value="purchased"/>
+    <setting name="isConsultationEnabled" value="true"/>
+    <setting name="isConsultationCheck" value="true"/>
+    <setting name="consultationAuthority" value="member"/>
+    <setting name="isInvoiceEnabled" value="true"/>
+    <setting name="isTaxPriceEnabled" value="true"/>
+    <setting name="taxRate" value="0.06"/>
+    <setting name="cookiePath" value="/"/>
+    <setting name="cookieDomain" value=""/>
+    <setting name="kuaidi100Key" value=""/>
+    <setting name="isCnzzEnabled" value="false"/>
+    <setting name="cnzzSiteId" value=""/>
+    <setting name="cnzzPassword" value=""/>
+
+    <logConfig operation="系统设置" urlPattern="/admin/setting/update.jhtml"/>
+    <logConfig operation="添加管理员" urlPattern="/admin/admin/save.jhtml"/>
+    <logConfig operation="编辑管理员" urlPattern="/admin/admin/update.jhtml"/>
+    <logConfig operation="删除管理员" urlPattern="/admin/admin/delete.jhtml"/>
+    <logConfig operation="添加会员" urlPattern="/admin/member/save.jhtml"/>
+    <logConfig operation="编辑会员" urlPattern="/admin/member/update.jhtml"/>
+    <logConfig operation="删除会员" urlPattern="/admin/member/delete.jhtml"/>
+    <logConfig operation="添加商品" urlPattern="/admin/product/save.jhtml"/>
+    <logConfig operation="编辑商品" urlPattern="/admin/product/update.jhtml"/>
+    <logConfig operation="删除商品" urlPattern="/admin/product/delete.jhtml"/>
+    <logConfig operation="添加文章" urlPattern="/admin/article/save.jhtml"/>
+    <logConfig operation="编辑文章" urlPattern="/admin/article/update.jhtml"/>
+    <logConfig operation="删除文章" urlPattern="/admin/article/delete.jhtml"/>
+    <logConfig operation="编辑订单" urlPattern="/admin/order/update.jhtml"/>
+    <logConfig operation="删除订单" urlPattern="/admin/order/delete.jhtml"/>
+    <logConfig operation="订单确认" urlPattern="/admin/order/confirm.jhtml"/>
+    <logConfig operation="订单完成" urlPattern="/admin/order/complete.jhtml"/>
+    <logConfig operation="订单取消" urlPattern="/admin/order/cancel.jhtml"/>
+    <logConfig operation="订单支付" urlPattern="/admin/order/payment.jhtml"/>
+    <logConfig operation="订单退款" urlPattern="/admin/order/refunds.jhtml"/>
+    <logConfig operation="订单发货" urlPattern="/admin/order/shipping.jhtml"/>
+    <logConfig operation="订单退货" urlPattern="/admin/order/returns.jhtml"/>
+
+    <template id="shopCommonJs" type="page" name="shop_common_js" templatePath="/shop/js/common.ftl"
+              staticPath="/resources/shop/js/common.js"/>
+    <template id="adminCommonJs" type="page" name="admin_common_js" templatePath="/admin/js/common.ftl"
+              staticPath="/resources/admin/js/common.js"/>
+    <template id="sitemapIndex" type="page" name="sitemap索引" templatePath="/shop/xml/sitemap_index.ftl"
+              staticPath="/sitemap/index.xml"/>
+    <template id="sitemap" type="page" name="sitemap" templatePath="/shop/xml/sitemap.ftl"
+              staticPath="/sitemap/${index}.xml"/>
+    <template id="header" type="page" name="头部" templatePath="/shop/include/header.ftl"/>
+    <template id="footer" type="page" name="底部" templatePath="/shop/include/footer.ftl"/>
+    <template id="login" type="page" name="登录" templatePath="/shop/login/index.ftl"/>
+    <template id="register" type="page" name="注册" templatePath="/shop/register/index.ftl"/>
+    <template id="index" type="page" name="首页" templatePath="/shop/index.ftl" staticPath="/index.html"/>
+    <template id="articleContent" type="page" name="文章内容" templatePath="/shop/article/content.ftl"
+              staticPath="/article/content/${createDate?string('yyyyMM')}/${id}/${pageNumber!1}.html"/>
+    <template id="articleList" type="page" name="文章列表" templatePath="/shop/article/list.ftl"/>
+    <template id="articleSearch" type="page" name="文章搜索" templatePath="/shop/article/search.ftl"/>
+    <template id="productContent" type="page" name="商品内容" templatePath="/shop/product/content.ftl"
+              staticPath="/product/content/${createDate?string('yyyyMM')}/${id}.html"/>
+    <template id="productList" type="page" name="商品列表" templatePath="/shop/product/list.ftl"/>
+    <template id="productSearch" type="page" name="商品搜索" templatePath="/shop/product/search.ftl"/>
+    <template id="brandList" type="page" name="品牌列表" templatePath="/shop/brand/list.ftl"/>
+    <template id="brandContent" type="page" name="品牌内容" templatePath="/shop/brand/content.ftl"/>
+    <template id="promotionContent" type="page" name="促销内容" templatePath="/shop/promotion/content.ftl"/>
+    <template id="productCategory" type="page" name="商品分类" templatePath="/shop/product_category/index.ftl"/>
+    <template id="friendLink" type="page" name="友情链接" templatePath="/shop/friend_link/index.ftl"/>
+    <template id="cart" type="page" name="购物车" templatePath="/shop/cart/list.ftl"/>
+    <template id="testMail" type="mail" name="邮件测试" templatePath="/admin/setting/mail.ftl"/>
+    <template id="productNotifyMail" type="mail" name="到货通知" templatePath="/shop/product_notify/mail.ftl"/>
+    <template id="findPasswordMail" type="mail" name="找回密码" templatePath="/shop/password/mail.ftl"/>
+    <template id="orderPrint" type="print" name="订单打印" templatePath="/admin/print/order.ftl"/>
+    <template id="productPrint" type="print" name="购物单打印" templatePath="/admin/print/product.ftl"/>
+    <template id="shippingPrint" type="print" name="配送单打印" templatePath="/admin/print/shipping.ftl"/>
+
+</opencms>

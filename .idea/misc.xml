@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EncodingComponent">
+    <option name="projectEncoding" />
+  </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <type id="javaeeApplication" />
+  </component>
+  <component name="IdProvider" IDEtalkID="A462B37EF14BDCB6A7D0F433DC62C9BF" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/web/WEB-INF/classes" />
+  </component>
+</project>
+
