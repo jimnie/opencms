@@ -99,15 +99,6 @@
                     [#break /]
                 [/@shiro.hasPermission]
             [/#list]
-            [#--Promotion--]
-            [#list ["admin:promotion", "admin:coupon", "admin:seo", "admin:sitemap"] as permission]
-                [@shiro.hasPermission name = permission]
-                    <li>
-                        <a href="#marketing">${message("admin.main.marketingNav")}</a>
-                    </li>
-                    [#break /]
-                [/@shiro.hasPermission]
-            [/#list]
             [#--Statistics--]
             [#list ["admin:statistics", "admin:sales", "admin:salesRanking", "admin:purchaseRanking", "admin:deposit"] as permission]
                 [@shiro.hasPermission name = permission]
@@ -303,30 +294,6 @@
 [@shiro.hasPermission name="admin:index"]
     <dd>
         <a href="../index/build.jhtml" target="iframe">${message("admin.main.index")}</a>
-    </dd>
-[/@shiro.hasPermission]
-</dl>
-[#--Promotion menu--]
-<dl id="marketing">
-    <dt>${message("admin.main.marketingGroup")}</dt>
-[@shiro.hasPermission name="admin:promotion"]
-    <dd>
-        <a href="../promotion/list.jhtml" target="iframe">${message("admin.main.promotion")}</a>
-    </dd>
-[/@shiro.hasPermission]
-[@shiro.hasPermission name="admin:coupon"]
-    <dd>
-        <a href="../coupon/list.jhtml" target="iframe">${message("admin.main.coupon")}</a>
-    </dd>
-[/@shiro.hasPermission]
-[@shiro.hasPermission name="admin:seo"]
-    <dd>
-        <a href="../seo/list.jhtml" target="iframe">${message("admin.main.seo")}</a>
-    </dd>
-[/@shiro.hasPermission]
-[@shiro.hasPermission name="admin:sitemap"]
-    <dd>
-        <a href="../sitemap/build.jhtml" target="iframe">${message("admin.main.sitemap")}</a>
     </dd>
 [/@shiro.hasPermission]
 </dl>

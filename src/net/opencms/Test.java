@@ -1,6 +1,5 @@
 package net.opencms;
 
-import com.sun.mail.iap.ByteArray;
 import org.apache.commons.codec.binary.Base64;
 
 import java.io.UnsupportedEncodingException;
@@ -13,8 +12,8 @@ public class Test {
         System.out.println(new String(Base64.decodeBase64("UG93ZXJlZEJ5"), "utf-8"));
         System.out.println(new String(Base64.decodeBase64("U2hvcHh4Lm5ldA=="), "utf-8"));
 
-//        byte[] opencms = new byte[]{Byte.valueOf("OPENCMS")};
-//        System.out.println(new String(Base64.encodeBase64(opencms)));
+//        byte[] opencms = new byte[]{Byte.valueOf("OPENCMS")}
+//        System.out.println(new String(Base64.encodeBase64(opencms)));;
     }
 }
 

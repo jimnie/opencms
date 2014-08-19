@@ -107,10 +107,6 @@
               staticPath="/resources/shop/js/common.js"/>
     <template id="adminCommonJs" type="page" name="admin_common_js" templatePath="/admin/js/common.ftl"
               staticPath="/resources/admin/js/common.js"/>
-    <template id="sitemapIndex" type="page" name="sitemap索引" templatePath="/shop/xml/sitemap_index.ftl"
-              staticPath="/sitemap/index.xml"/>
-    <template id="sitemap" type="page" name="sitemap" templatePath="/shop/xml/sitemap.ftl"
-              staticPath="/sitemap/${index}.xml"/>
     <template id="header" type="page" name="头部" templatePath="/shop/include/header.ftl"/>
     <template id="footer" type="page" name="底部" templatePath="/shop/include/footer.ftl"/>
     <template id="login" type="page" name="登录" templatePath="/shop/login/index.ftl"/>
