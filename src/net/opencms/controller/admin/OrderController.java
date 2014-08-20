@@ -41,12 +41,8 @@ public class OrderController extends BaseController {
     private OrderService orderService;
     @Resource(name = "orderItemServiceImpl")
     private OrderItemService orderItemService;
-    @Resource(name = "shippingMethodServiceImpl")
-    private ShippingMethodService shippingMethodService;
     @Resource(name = "deliveryCorpServiceImpl")
     private DeliveryCorpService deliveryCorpService;
-    @Resource(name = "paymentMethodServiceImpl")
-    private PaymentMethodService paymentMethodService;
     @Resource(name = "snServiceImpl")
     private SnService snService;
 
@@ -77,8 +73,6 @@ public class OrderController extends BaseController {
     public String view(Long id, ModelMap model) {
         model.addAttribute("methods", Payment.Method.values());
         model.addAttribute("refundsMethods", Refunds.Method.values());
-        model.addAttribute("paymentMethods", paymentMethodService.findAll());
-        model.addAttribute("shippingMethods", shippingMethodService.findAll());
         model.addAttribute("deliveryCorps", deliveryCorpService.findAll());
         model.addAttribute("order", orderService.find(id));
         return "/admin/order/view";
@@ -127,8 +121,6 @@ public class OrderController extends BaseController {
     public String payment(Long orderId, Long paymentMethodId, Payment payment, RedirectAttributes redirectAttributes) {
         Order order = orderService.find(orderId);
         payment.setOrder(order);
-        PaymentMethod paymentMethod = paymentMethodService.find(paymentMethodId);
-        payment.setPaymentMethod(paymentMethod != null ? paymentMethod.getName() : null);
         if (!isValid(payment)) {
             return ERROR_VIEW;
         }
@@ -168,8 +160,6 @@ public class OrderController extends BaseController {
     public String refunds(Long orderId, Long paymentMethodId, Refunds refunds, RedirectAttributes redirectAttributes) {
         Order order = orderService.find(orderId);
         refunds.setOrder(order);
-        PaymentMethod paymentMethod = paymentMethodService.find(paymentMethodId);
-        refunds.setPaymentMethod(paymentMethod != null ? paymentMethod.getName() : null);
         if (!isValid(refunds)) {
             return ERROR_VIEW;
         }
@@ -216,8 +206,6 @@ public class OrderController extends BaseController {
             shippingItem.setShipping(shipping);
         }
         shipping.setOrder(order);
-        ShippingMethod shippingMethod = shippingMethodService.find(shippingMethodId);
-        shipping.setShippingMethod(shippingMethod != null ? shippingMethod.getName() : null);
         DeliveryCorp deliveryCorp = deliveryCorpService.find(deliveryCorpId);
         shipping.setDeliveryCorp(deliveryCorp != null ? deliveryCorp.getName() : null);
         shipping.setDeliveryCorpUrl(deliveryCorp != null ? deliveryCorp.getUrl() : null);
@@ -264,8 +252,6 @@ public class OrderController extends BaseController {
             returnsItem.setReturns(returns);
         }
         returns.setOrder(order);
-        ShippingMethod shippingMethod = shippingMethodService.find(shippingMethodId);
-        returns.setShippingMethod(shippingMethod != null ? shippingMethod.getName() : null);
         DeliveryCorp deliveryCorp = deliveryCorpService.find(deliveryCorpId);
         returns.setDeliveryCorp(deliveryCorp != null ? deliveryCorp.getName() : null);
         Area area = areaService.find(areaId);
@@ -292,8 +278,6 @@ public class OrderController extends BaseController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(Long id, ModelMap model) {
-        model.addAttribute("paymentMethods", paymentMethodService.findAll());
-        model.addAttribute("shippingMethods", shippingMethodService.findAll());
         model.addAttribute("order", orderService.find(id));
         return "/admin/order/edit";
     }
@@ -337,8 +321,6 @@ public class OrderController extends BaseController {
             }
         }
         order.setArea(areaService.find(areaId));
-        order.setPaymentMethod(paymentMethodService.find(paymentMethodId));
-        order.setShippingMethod(shippingMethodService.find(shippingMethodId));
         if (!isValid(order)) {
             data.put("message", Message.warn("admin.common.invalid"));
             return data;
@@ -407,8 +389,6 @@ public class OrderController extends BaseController {
             }
         }
         order.setArea(areaService.find(areaId));
-        order.setPaymentMethod(paymentMethodService.find(paymentMethodId));
-        order.setShippingMethod(shippingMethodService.find(shippingMethodId));
         if (!isValid(order)) {
             return ERROR_VIEW;
         }

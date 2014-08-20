@@ -62,8 +62,6 @@
 
                 /admin/setting/** = perms["admin:setting"]
                 /admin/area/** = perms["admin:area"]
-                /admin/payment_method/** = perms["admin:paymentMethod"]
-                /admin/shipping_method/** = perms["admin:shippingMethod"]
                 /admin/delivery_corp/** = perms["admin:deliveryCorp"]
                 /admin/payment_plugin/** = perms["admin:paymentPlugin"]
                 /admin/storage_plugin/** = perms["admin:storagePlugin"]

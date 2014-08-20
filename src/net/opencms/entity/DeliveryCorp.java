@@ -1,19 +1,13 @@
 
 package net.opencms.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.PreRemove;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "xx_delivery_corp")
@@ -27,8 +21,6 @@ public class DeliveryCorp extends OrderEntity {
 	private String url;
 
 	private String code;
-
-	private Set<ShippingMethod> shippingMethods = new HashSet<ShippingMethod>();
 
 	@NotEmpty
 	@Length(max = 200)
@@ -57,25 +49,6 @@ public class DeliveryCorp extends OrderEntity {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	@OneToMany(mappedBy = "defaultDeliveryCorp", fetch = FetchType.LAZY)
-	public Set<ShippingMethod> getShippingMethods() {
-		return shippingMethods;
-	}
-
-	public void setShippingMethods(Set<ShippingMethod> shippingMethods) {
-		this.shippingMethods = shippingMethods;
-	}
-
-	@PreRemove
-	public void preRemove() {
-		Set<ShippingMethod> shippingMethods = getShippingMethods();
-		if (shippingMethods != null) {
-			for (ShippingMethod shippingMethod : shippingMethods) {
-				shippingMethod.setDefaultDeliveryCorp(null);
-			}
-		}
 	}
 
 }

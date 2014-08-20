@@ -344,16 +344,6 @@
         <a href="../area/list.jhtml" target="iframe">${message("admin.main.area")}</a>
     </dd>
 [/@shiro.hasPermission]
-[@shiro.hasPermission name="admin:paymentMethod"]
-    <dd>
-        <a href="../payment_method/list.jhtml" target="iframe">${message("admin.main.paymentMethod")}</a>
-    </dd>
-[/@shiro.hasPermission]
-[@shiro.hasPermission name="admin:shippingMethod"]
-    <dd>
-        <a href="../shipping_method/list.jhtml" target="iframe">${message("admin.main.shippingMethod")}</a>
-    </dd>
-[/@shiro.hasPermission]
 [@shiro.hasPermission name="admin:deliveryCorp"]
     <dd>
         <a href="../delivery_corp/list.jhtml" target="iframe">${message("admin.main.deliveryCorp")}</a>

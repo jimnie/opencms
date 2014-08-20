@@ -114,10 +114,6 @@ public class Order extends BaseEntity {
 
     private Area area;
 
-    private PaymentMethod paymentMethod;
-
-    private ShippingMethod shippingMethod;
-
     private Admin operator;
 
     private Member member;
@@ -396,26 +392,6 @@ public class Order extends BaseEntity {
         this.area = area;
     }
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    public ShippingMethod getShippingMethod() {
-        return shippingMethod;
-    }
-
-    public void setShippingMethod(ShippingMethod shippingMethod) {
-        this.shippingMethod = shippingMethod;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     public Admin getOperator() {
         return operator;
@@ -664,24 +640,12 @@ public class Order extends BaseEntity {
         if (getArea() != null) {
             setAreaName(getArea().getFullName());
         }
-        if (getPaymentMethod() != null) {
-            setPaymentMethodName(getPaymentMethod().getName());
-        }
-        if (getShippingMethod() != null) {
-            setShippingMethodName(getShippingMethod().getName());
-        }
     }
 
     @PreUpdate
     public void preUpdate() {
         if (getArea() != null) {
             setAreaName(getArea().getFullName());
-        }
-        if (getPaymentMethod() != null) {
-            setPaymentMethodName(getPaymentMethod().getName());
-        }
-        if (getShippingMethod() != null) {
-            setShippingMethodName(getShippingMethod().getName());
         }
     }
 

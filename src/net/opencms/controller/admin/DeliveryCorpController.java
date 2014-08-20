@@ -1,19 +1,18 @@
 
 package net.opencms.controller.admin;
 
-import javax.annotation.Resource;
-
 import net.opencms.Message;
 import net.opencms.Pageable;
 import net.opencms.entity.DeliveryCorp;
 import net.opencms.service.DeliveryCorpService;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.annotation.Resource;
 
 @Controller("adminDeliveryCorpController")
 @RequestMapping("/admin/delivery_corp")
@@ -32,7 +31,6 @@ public class DeliveryCorpController extends BaseController {
 		if (!isValid(deliveryCorp)) {
 			return ERROR_VIEW;
 		}
-		deliveryCorp.setShippingMethods(null);
 		deliveryCorpService.save(deliveryCorp);
 		addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
 		return "redirect:list.jhtml";

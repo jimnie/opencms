@@ -3,9 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>${message("admin.index.title")} - Powered By SHOP++</title>
-    <meta name="author" content="SHOP++ Team"/>
-    <meta name="copyright" content="SHOP++"/>
+    <title>${message("admin.index.title")}</title>
     <link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         .input .powered {
@@ -32,20 +30,6 @@ ${message("admin.index.title")}
         </th>
         <td>
         ${systemVersion}
-        </td>
-    </tr>
-    <tr>
-        <th>
-        ${message("admin.index.official")}:
-        </th>
-        <td>
-            <a href="http://www.shopxx.net" target="_blank">http://www.shopxx.net</a>
-        </td>
-        <th>
-        ${message("admin.index.bbs")}:
-        </th>
-        <td>
-            <a href="http://bbs.shopxx.net" target="_blank">http://bbs.shopxx.net</a>
         </td>
     </tr>
     <tr>
@@ -93,11 +77,6 @@ ${message("admin.index.title")}
         </th>
         <td>
         ${servletVersion}
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4">
-            &nbsp;
         </td>
     </tr>
 </table>

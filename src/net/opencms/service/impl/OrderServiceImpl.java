@@ -115,7 +115,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
     }
 
     @Transactional(readOnly = true)
-    public Order build(Cart cart, Receiver receiver, PaymentMethod paymentMethod, ShippingMethod shippingMethod, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo) {
+    public Order build(Cart cart, Receiver receiver, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo) {
         Assert.notNull(cart);
         Assert.notNull(cart.getMember());
         Assert.notEmpty(cart.getCartItems());
@@ -152,21 +152,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
             order.setPromotion(promotionName.toString());
         }
 
-        order.setPaymentMethod(paymentMethod);
-
-        if (shippingMethod != null && paymentMethod != null && paymentMethod.getShippingMethods().contains(shippingMethod)) {
-            BigDecimal freight = shippingMethod.calculateFreight(cart.getWeight());
-            for (Promotion promotion : cart.getPromotions()) {
-                if (promotion.getIsFreeShipping()) {
-                    freight = new BigDecimal(0);
-                    break;
-                }
-            }
-            order.setFreight(freight);
-            order.setShippingMethod(shippingMethod);
-        } else {
-            order.setFreight(new BigDecimal(0));
-        }
+        order.setFreight(new BigDecimal(0));
 
         List<OrderItem> orderItems = order.getOrderItems();
         for (CartItem cartItem : cart.getCartItems()) {
@@ -241,28 +227,20 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements Or
             order.setPaymentStatus(PaymentStatus.unpaid);
         }
 
-        if (paymentMethod != null && paymentMethod.getTimeout() != null && order.getPaymentStatus() == PaymentStatus.unpaid) {
-            order.setExpire(DateUtils.addMinutes(new Date(), paymentMethod.getTimeout()));
-        }
-
         return order;
     }
 
-    public Order create(Cart cart, Receiver receiver, PaymentMethod paymentMethod, ShippingMethod shippingMethod, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo, Admin operator) {
+    public Order create(Cart cart, Receiver receiver, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo, Admin operator) {
         Assert.notNull(cart);
         Assert.notNull(cart.getMember());
         Assert.notEmpty(cart.getCartItems());
         Assert.notNull(receiver);
-        Assert.notNull(paymentMethod);
-        Assert.notNull(shippingMethod);
 
-        Order order = build(cart, receiver, paymentMethod, shippingMethod, isInvoice, invoiceTitle, useBalance, memo);
+        Order order = build(cart, receiver, isInvoice, invoiceTitle, useBalance, memo);
 
         order.setSn(snDao.generate(Sn.Type.order));
-        if (paymentMethod.getMethod() == PaymentMethod.Method.online) {
-            order.setLockExpire(DateUtils.addSeconds(new Date(), 20));
-            order.setOperator(operator);
-        }
+        order.setLockExpire(DateUtils.addSeconds(new Date(), 20));
+        order.setOperator(operator);
 
         Setting setting = SettingUtils.get();
         if (setting.getStockAllocationTime() == StockAllocationTime.order || (setting.getStockAllocationTime() == StockAllocationTime.payment && (order.getPaymentStatus() == PaymentStatus.partialPayment || order.getPaymentStatus() == PaymentStatus.paid))) {

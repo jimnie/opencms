@@ -35,9 +35,9 @@ public interface OrderService extends BaseService<Order, Long> {
 
     void releaseStock();
 
-    Order build(Cart cart, Receiver receiver, PaymentMethod paymentMethod, ShippingMethod shippingMethod, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo);
+    Order build(Cart cart, Receiver receiver, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo);
 
-    Order create(Cart cart, Receiver receiver, PaymentMethod paymentMethod, ShippingMethod shippingMethod, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo, Admin operator);
+    Order create(Cart cart, Receiver receiver, boolean isInvoice, String invoiceTitle, boolean useBalance, String memo, Admin operator);
 
     void update(Order order, Admin operator);
 
