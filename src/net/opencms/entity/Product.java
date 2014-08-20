@@ -1,68 +1,32 @@
 
 package net.opencms.entity;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.Valid;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import freemarker.template.TemplateException;
 import net.opencms.BigDecimalNumericFieldBridge;
 import net.opencms.CommonAttributes;
 import net.opencms.util.FreemarkerUtils;
-
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.io.SAXReader;
-import org.hibernate.search.annotations.Analyzer;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.FieldBridge;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.NumericField;
-import org.hibernate.search.annotations.Similarity;
-import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.core.io.ClassPathResource;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 import org.wltea.analyzer.lucene.IKSimilarity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import freemarker.template.TemplateException;
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import java.util.*;
 
 @Indexed
 @Similarity(impl = IKSimilarity.class)
@@ -252,10 +216,10 @@ public class Product extends BaseEntity {
 
 	static {
 		try {
-			File shopxxXmlFile = new ClassPathResource(CommonAttributes.CMS_CONFIG_PATH).getFile();
-			org.dom4j.Document document = new SAXReader().read(shopxxXmlFile);
-			org.dom4j.Element element = (org.dom4j.Element) document.selectSingleNode("/shopxx/template[@id='productContent']");
-			staticPath = element.attributeValue("staticPath");
+            File opencmsXmlFile = new ClassPathResource(CommonAttributes.CMS_CONFIG_PATH).getFile();
+            org.dom4j.Document document = new SAXReader().read(opencmsXmlFile);
+            org.dom4j.Element element = (org.dom4j.Element) document.selectSingleNode("/opencms/template[@id='productContent']");
+            staticPath = element.attributeValue("staticPath");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,42 +1,12 @@
 
 package net.opencms.entity;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OrderBy;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-
+import freemarker.template.TemplateException;
 import net.opencms.CommonAttributes;
 import net.opencms.util.FreemarkerUtils;
-
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.io.SAXReader;
-import org.hibernate.search.annotations.Analyzer;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Similarity;
-import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jsoup.Jsoup;
@@ -48,7 +18,13 @@ import org.springframework.core.io.ClassPathResource;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 import org.wltea.analyzer.lucene.IKSimilarity;
 
-import freemarker.template.TemplateException;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Indexed
 @Similarity(impl = IKSimilarity.class)
@@ -99,8 +75,8 @@ public class Article extends BaseEntity {
 		try {
 			File shopxxXmlFile = new ClassPathResource(CommonAttributes.CMS_CONFIG_PATH).getFile();
 			org.dom4j.Document document = new SAXReader().read(shopxxXmlFile);
-			org.dom4j.Element element = (org.dom4j.Element) document.selectSingleNode("/shopxx/template[@id='articleContent']");
-			staticPath = element.attributeValue("staticPath");
+            org.dom4j.Element element = (org.dom4j.Element) document.selectSingleNode("/opencms/template[@id='articleContent']");
+            staticPath = element.attributeValue("staticPath");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

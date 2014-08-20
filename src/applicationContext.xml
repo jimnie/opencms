@@ -2,18 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:cache="http://www.springframework.org/schema/cache"
-       xmlns:task="http://www.springframework.org/schema/task"
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
-	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
-	default-lazy-init="true">
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd"
+       default-lazy-init="true">
 
-	<context:property-placeholder location="classpath*:/database.properties" ignore-resource-not-found="true" ignore-unresolvable="true" />
+<context:property-placeholder location="classpath*:/database.properties" ignore-resource-not-found="true" ignore-unresolvable="true" />
 
 	<context:component-scan base-package="net.opencms">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
@@ -122,7 +119,6 @@
 				<entry key="flash_message" value-ref="flashMessageDirective" />
 				<entry key="current_member" value-ref="currentMemberDirective" />
 				<entry key="pagination" value-ref="paginationDirective" />
-				<entry key="seo" value-ref="seoDirective" />
 				<entry key="ad_position" value-ref="adPositionDirective" />
 				<entry key="member_attribute_list" value-ref="memberAttributeListDirective" />
 				<entry key="navigation_list" value-ref="navigationListDirective" />

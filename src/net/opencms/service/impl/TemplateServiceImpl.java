@@ -1,18 +1,10 @@
 
 package net.opencms.service.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.ServletContext;
-
 import net.opencms.CommonAttributes;
 import net.opencms.Template;
 import net.opencms.Template.Type;
 import net.opencms.service.TemplateService;
-
 import org.apache.commons.io.FileUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -22,6 +14,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletContextAware;
+
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service("templateServiceImpl")
 public class TemplateServiceImpl implements TemplateService, ServletContextAware {
@@ -42,8 +40,8 @@ public class TemplateServiceImpl implements TemplateService, ServletContextAware
 			File shopxxXmlFile = new ClassPathResource(CommonAttributes.CMS_CONFIG_PATH).getFile();
 			Document document = new SAXReader().read(shopxxXmlFile);
 			List<Template> templates = new ArrayList<Template>();
-			List<Element> elements = document.selectNodes("/shopxx/template");
-			for (Element element : elements) {
+            List<Element> elements = document.selectNodes("/opencms/template");
+            for (Element element : elements) {
 				Template template = getTemplate(element);
 				templates.add(template);
 			}
@@ -62,8 +60,8 @@ public class TemplateServiceImpl implements TemplateService, ServletContextAware
 				File shopxxXmlFile = new ClassPathResource(CommonAttributes.CMS_CONFIG_PATH).getFile();
 				Document document = new SAXReader().read(shopxxXmlFile);
 				List<Template> templates = new ArrayList<Template>();
-				List<Element> elements = document.selectNodes("/shopxx/template[@type='" + type + "']");
-				for (Element element : elements) {
+                List<Element> elements = document.selectNodes("/opencms/template[@type='" + type + "']");
+                for (Element element : elements) {
 					Template template = getTemplate(element);
 					templates.add(template);
 				}
@@ -82,8 +80,8 @@ public class TemplateServiceImpl implements TemplateService, ServletContextAware
 		try {
 			File shopxxXmlFile = new ClassPathResource(CommonAttributes.CMS_CONFIG_PATH).getFile();
 			Document document = new SAXReader().read(shopxxXmlFile);
-			Element element = (Element) document.selectSingleNode("/shopxx/template[@id='" + id + "']");
-			Template template = getTemplate(element);
+            Element element = (Element) document.selectSingleNode("/opencms/template[@id='" + id + "']");
+            Template template = getTemplate(element);
 			return template;
 		} catch (Exception e) {
 			e.printStackTrace();
